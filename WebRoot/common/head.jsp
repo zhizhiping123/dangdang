@@ -13,8 +13,8 @@
 			</div>
 		</div>
 		<span class="head_toutext" id="logininfo">
-		<b>您好，欢迎光临当当网</b>
-		[&nbsp;<a href="" class="b">登出</a>&nbsp;]
+		<b>您好:${sessionScope.nickName}欢迎光临当当网</b>
+		[&nbsp;<a href="logout.do" class="b">登出</a>&nbsp;]
 		[&nbsp;<a href="../user/login_form.jsp" class="b">登录</a>|<a
 			href="../user/register_form.jsp" class="b">注册</a>&nbsp;]
 		</span>

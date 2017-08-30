@@ -1,3 +1,5 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.Enumeration"%>
 <%@page contentType="text/html;charset=utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,12 +10,13 @@
 	</head>
 	<body>
 		<%@include file="../common/head1.jsp"%>
+	
 		<div class="login_step">
 			注册步骤:
 			<span class="red_bold">1.填写信息</span> > 2.验证邮箱 > 3.注册成功
 		</div>
 		<div class="fill_message">
-			<form name="ctl00" method="post" action="verify_form.jsp" id="f">
+			<form name="ctl00" method="post" action="register/verify_form.do" id="f">
 				<h2>
 					以下均为必填项
 				</h2>
@@ -37,7 +40,7 @@
 							设置您在当当网的昵称：
 						</td>
 						<td>
-							<input name="nickname" type="text" id="txtNickName" class="text_input" />
+							<input name="nickName" type="text" id="txtNickName" class="text_input" />
 							<div class="text_left" id="nickNameValidMsg">
 								<p>
 									您的昵称可以由小写英文字母、中文、数字组成，
@@ -99,8 +102,13 @@
 				<div class="login_in">
 
 					<input id="btnClientRegister" class="button_1" name="submit"  type="submit" value="注 册"/>
+					<span style="color: red;">${sessionScope.error}</span>
+					<span style="color: red;">${sessionScope.pwd_error}</span>
+					<span style="color: red;">${sessionScope.code_error}</span>
+					<span style="color: red;">${sessionScope.exist_error}</span>
 				</div>
 			</form>
+			
 		</div>
 		<%@include file="../common/foot1.jsp"%>
 	</body>

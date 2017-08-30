@@ -7,6 +7,7 @@
 		<link href="../css/page_bottom.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+
 		<%@include file="../common/head1.jsp"%>
 		<div class="login_step">
 			注册步骤: 1.填写信息 > 2.验证邮箱 >
@@ -20,10 +21,10 @@
 					<img src="${pageContext.request.contextPath}/images/login_success.jpg" />
 				</div>
 				<h5>
-					张三，欢迎加入当当网
+					${sessionScope.registerForm.nickName}，欢迎加入当当网
 				</h5>
 				<h6>
-					请牢记您的登录邮件地址：zhangsan@163.com
+					请牢记您的登录邮件地址：${sessionScope.register_email}
 				</h6>
 
 				<ul>

@@ -28,7 +28,7 @@
 							登录当当网
 						</h3>
 
-						<form method="post" action="" id="ctl00">
+						<form method="post" action="login.do" id="ctl00">
 							<ul>
 								<li>
 									<span>请输入Email地址：</span>
