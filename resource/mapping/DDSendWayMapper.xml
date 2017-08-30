@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DDSendWayMapper">
+  <resultMap id="BaseResultMap" type="entity.DDSendWay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="is_close" jdbcType="BIT" property="isClose" />
+    <result column="send_way" jdbcType="VARCHAR" property="sendWay" />
+    <result column="send_desc" jdbcType="VARCHAR" property="sendDesc" />
+    <result column="send_fee" jdbcType="DOUBLE" property="sendFee" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, is_close, send_way, send_desc, send_fee
+  </sql>
+  <select id="selectByExample" parameterType="entity.DDSendWayCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from d_d_send_way
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from d_d_send_way
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from d_d_send_way
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.DDSendWayCriteria">
+    delete from d_d_send_way
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.DDSendWay">
+    insert into d_d_send_way (id, is_close, send_way, 
+      send_desc, send_fee)
+    values (#{id,jdbcType=INTEGER}, #{isClose,jdbcType=BIT}, #{sendWay,jdbcType=VARCHAR}, 
+      #{sendDesc,jdbcType=VARCHAR}, #{sendFee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.DDSendWay">
+    insert into d_d_send_way
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="isClose != null">
+        is_close,
+      </if>
+      <if test="sendWay != null">
+        send_way,
+      </if>
+      <if test="sendDesc != null">
+        send_desc,
+      </if>
+      <if test="sendFee != null">
+        send_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="isClose != null">
+        #{isClose,jdbcType=BIT},
+      </if>
+      <if test="sendWay != null">
+        #{sendWay,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDesc != null">
+        #{sendDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFee != null">
+        #{sendFee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.DDSendWayCriteria" resultType="java.lang.Long">
+    select count(*) from d_d_send_way
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update d_d_send_way
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.isClose != null">
+        is_close = #{record.isClose,jdbcType=BIT},
+      </if>
+      <if test="record.sendWay != null">
+        send_way = #{record.sendWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDesc != null">
+        send_desc = #{record.sendDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendFee != null">
+        send_fee = #{record.sendFee,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update d_d_send_way
+    set id = #{record.id,jdbcType=INTEGER},
+      is_close = #{record.isClose,jdbcType=BIT},
+      send_way = #{record.sendWay,jdbcType=VARCHAR},
+      send_desc = #{record.sendDesc,jdbcType=VARCHAR},
+      send_fee = #{record.sendFee,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.DDSendWay">
+    update d_d_send_way
+    <set>
+      <if test="isClose != null">
+        is_close = #{isClose,jdbcType=BIT},
+      </if>
+      <if test="sendWay != null">
+        send_way = #{sendWay,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDesc != null">
+        send_desc = #{sendDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendFee != null">
+        send_fee = #{sendFee,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.DDSendWay">
+    update d_d_send_way
+    set is_close = #{isClose,jdbcType=BIT},
+      send_way = #{sendWay,jdbcType=VARCHAR},
+      send_desc = #{sendDesc,jdbcType=VARCHAR},
+      send_fee = #{sendFee,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
