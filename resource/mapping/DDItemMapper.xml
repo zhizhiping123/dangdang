@@ -8,6 +8,9 @@
     <result column="dang_price" jdbcType="DOUBLE" property="dangPrice" />
     <result column="product_num" jdbcType="INTEGER" property="productNum" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="fixed_price" jdbcType="DOUBLE" property="fixedPrice" />
+    <result column="product_name" jdbcType="CHAR" property="productName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_id, product_id, dang_price, product_num, amount
+    id, order_id, product_id, dang_price, product_num, amount, user_id, fixed_price, 
+    product_name
   </sql>
   <select id="selectByExample" parameterType="entity.DDItemCriteria" resultMap="BaseResultMap">
     select
@@ -102,10 +106,12 @@
   </delete>
   <insert id="insert" parameterType="entity.DDItem">
     insert into d_d_item (id, order_id, product_id, 
-      dang_price, product_num, amount
+      dang_price, product_num, amount, 
+      user_id, fixed_price, product_name
       )
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
-      #{dangPrice,jdbcType=DOUBLE}, #{productNum,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}
+      #{dangPrice,jdbcType=DOUBLE}, #{productNum,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}, 
+      #{userId,jdbcType=INTEGER}, #{fixedPrice,jdbcType=DOUBLE}, #{productName,jdbcType=CHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="entity.DDItem">
@@ -129,6 +135,15 @@
       <if test="amount != null">
         amount,
       </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="fixedPrice != null">
+        fixed_price,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -148,6 +163,15 @@
       </if>
       <if test="amount != null">
         #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fixedPrice != null">
+        #{fixedPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +202,15 @@
       <if test="record.amount != null">
         amount = #{record.amount,jdbcType=DOUBLE},
       </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fixedPrice != null">
+        fixed_price = #{record.fixedPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.productName != null">
+        product_name = #{record.productName,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +223,10 @@
       product_id = #{record.productId,jdbcType=INTEGER},
       dang_price = #{record.dangPrice,jdbcType=DOUBLE},
       product_num = #{record.productNum,jdbcType=INTEGER},
-      amount = #{record.amount,jdbcType=DOUBLE}
+      amount = #{record.amount,jdbcType=DOUBLE},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      fixed_price = #{record.fixedPrice,jdbcType=DOUBLE},
+      product_name = #{record.productName,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +249,15 @@
       <if test="amount != null">
         amount = #{amount,jdbcType=DOUBLE},
       </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="fixedPrice != null">
+        fixed_price = #{fixedPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +267,14 @@
       product_id = #{productId,jdbcType=INTEGER},
       dang_price = #{dangPrice,jdbcType=DOUBLE},
       product_num = #{productNum,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=DOUBLE}
+      amount = #{amount,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER},
+      fixed_price = #{fixedPrice,jdbcType=DOUBLE},
+      product_name = #{productName,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateProductNumById">
+  update d_d_item set product_num=#{num} where id = #{itemId}
+  
   </update>
 </mapper>

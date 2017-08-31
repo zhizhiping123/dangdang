@@ -23,6 +23,8 @@ public class DDProduct implements Serializable {
 
     private String productPic;
 
+    private Integer bookId;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -105,6 +107,14 @@ public class DDProduct implements Serializable {
         this.productPic = productPic == null ? null : productPic.trim();
     }
 
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -121,6 +131,7 @@ public class DDProduct implements Serializable {
         sb.append(", keywords=").append(keywords);
         sb.append(", hasDeleted=").append(hasDeleted);
         sb.append(", productPic=").append(productPic);
+        sb.append(", bookId=").append(bookId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

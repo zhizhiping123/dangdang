@@ -27,4 +27,6 @@ public interface DDItemMapper {
     int updateByPrimaryKeySelective(DDItem record);
 
     int updateByPrimaryKey(DDItem record);
+
+	Boolean updateProductNumById(@Param("itemId")Integer itemId,@Param("num") Integer num);
 }

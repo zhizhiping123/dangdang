@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class RegisterDto {
 @NotEmpty
+@Email
 private String email;
 @NotEmpty
 @Size(min=4,max=20)

@@ -17,7 +17,8 @@ public String login(String name,String password){
 	Boolean loginResult=loginService.login(name,password);
 	if (loginResult) {
 	getSession().setAttribute("email", name);
-		return "redirect:/main/main.jsp";
+		getSession().setAttribute("currentPage", 1);
+		return "redirect:/list/book/page/1.do";
 	}
 	else {
 		return "redirect:/user/login_form.jsp";
@@ -26,7 +27,7 @@ public String login(String name,String password){
 @RequestMapping("/logout.do")
 public String logout(){
 	getSession().removeAttribute("nickName");
-	return "redirect:/main/main.jsp";
+	return "redirect:/main/login_form.jsp";
 }
 
 }

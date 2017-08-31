@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.DDProductMapper">
   <resultMap id="BaseResultMap" type="entity.DDProduct">
     <id column="id" jdbcType="INTEGER" property="id" />
@@ -12,6 +13,7 @@
     <result column="keywords" jdbcType="VARCHAR" property="keywords" />
     <result column="has_deleted" jdbcType="INTEGER" property="hasDeleted" />
     <result column="product_pic" jdbcType="VARCHAR" property="productPic" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, category_id, product_name, description, add_time, fixed_price, dang_price, keywords, 
-    has_deleted, product_pic
+    has_deleted, product_pic, book_id
   </sql>
   <select id="selectByExample" parameterType="entity.DDProductCriteria" resultMap="BaseResultMap">
     select
@@ -109,11 +111,11 @@
     insert into d_d_product (id, category_id, product_name, 
       description, add_time, fixed_price, 
       dang_price, keywords, has_deleted, 
-      product_pic)
+      product_pic, book_id)
     values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{addTime,jdbcType=BIGINT}, #{fixedPrice,jdbcType=DOUBLE}, 
       #{dangPrice,jdbcType=DOUBLE}, #{keywords,jdbcType=VARCHAR}, #{hasDeleted,jdbcType=INTEGER}, 
-      #{productPic,jdbcType=VARCHAR})
+      #{productPic,jdbcType=VARCHAR}, #{bookId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="entity.DDProduct">
     insert into d_d_product
@@ -148,6 +150,9 @@
       <if test="productPic != null">
         product_pic,
       </if>
+      <if test="bookId != null">
+        book_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +184,9 @@
       </if>
       <if test="productPic != null">
         #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="bookId != null">
+        #{bookId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -221,6 +229,9 @@
       <if test="record.productPic != null">
         product_pic = #{record.productPic,jdbcType=VARCHAR},
       </if>
+      <if test="record.bookId != null">
+        book_id = #{record.bookId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +248,8 @@
       dang_price = #{record.dangPrice,jdbcType=DOUBLE},
       keywords = #{record.keywords,jdbcType=VARCHAR},
       has_deleted = #{record.hasDeleted,jdbcType=INTEGER},
-      product_pic = #{record.productPic,jdbcType=VARCHAR}
+      product_pic = #{record.productPic,jdbcType=VARCHAR},
+      book_id = #{record.bookId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +284,9 @@
       <if test="productPic != null">
         product_pic = #{productPic,jdbcType=VARCHAR},
       </if>
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +300,11 @@
       dang_price = #{dangPrice,jdbcType=DOUBLE},
       keywords = #{keywords,jdbcType=VARCHAR},
       has_deleted = #{hasDeleted,jdbcType=INTEGER},
-      product_pic = #{productPic,jdbcType=VARCHAR}
+      product_pic = #{productPic,jdbcType=VARCHAR},
+      book_id = #{bookId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+	<select id="select" resultMap="BaseResultMap">
+	select * from d_d_product
+	</select>
 </mapper>

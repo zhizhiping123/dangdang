@@ -25,14 +25,10 @@ public class EmailConfig {
 	@Bean
 	public JavaMailSender mailSender() throws UnsupportedEncodingException{
 		JavaMailSenderImpl javaMailSenderImpl=new JavaMailSenderImpl();
-		System.out.println(env);
 		javaMailSenderImpl.setHost(env.getProperty("mail.host"));
 		System.out.println(env.getProperty("mail.host"));
 		javaMailSenderImpl.setUsername(env.getProperty("mail.username"));
-		//System.out.println(Base64Util.decode(env.getProperty("mail.password")));
-		//javaMailSenderImpl.setPassword(Base64Util.decode(env.getProperty("mail.password")));
 		javaMailSenderImpl.setPassword(env.getProperty("mail.password"));
-		//env.getProperty("mail.password");
 		javaMailSenderImpl.setPort(Integer.parseInt(env.getProperty("mail.smtp.port")));
 		Properties javaMailProperties=new Properties();
 		javaMailProperties.setProperty("mail.smtp.starttls.enable", env.getProperty("mail.smtp.starttls.enable"));

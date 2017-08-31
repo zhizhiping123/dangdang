@@ -33,6 +33,7 @@ public class LoginServiceImpl implements LoginService{
 		List<DDUser> selectByExample = ddUserMapper.selectByExample(ddUserCriteria);
 		if (selectByExample!=null) {
 			AppUtil.getSession().setAttribute("nickName", selectByExample.get(0).getNickname());
+			AppUtil.getSession().setAttribute("uid",selectByExample.get(0).getId());
 			return true;
 		}
 		return false;

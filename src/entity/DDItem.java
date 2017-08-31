@@ -15,6 +15,12 @@ public class DDItem implements Serializable {
 
     private Double amount;
 
+    private Integer userId;
+
+    private Double fixedPrice;
+
+    private String productName;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -65,6 +71,30 @@ public class DDItem implements Serializable {
         this.amount = amount;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Double getFixedPrice() {
+        return fixedPrice;
+    }
+
+    public void setFixedPrice(Double fixedPrice) {
+        this.fixedPrice = fixedPrice;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -77,6 +107,9 @@ public class DDItem implements Serializable {
         sb.append(", dangPrice=").append(dangPrice);
         sb.append(", productNum=").append(productNum);
         sb.append(", amount=").append(amount);
+        sb.append(", userId=").append(userId);
+        sb.append(", fixedPrice=").append(fixedPrice);
+        sb.append(", productName=").append(productName);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
